@@ -14,10 +14,106 @@
 <meta name="twitter:title" content="归档">
 <meta name="twitter:description" content="">
     <link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+<div class="loading">
+    <div class="loader"></div>
+</div>
+
+<style>
+ 
+.loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 99;
+    background-color: hsl(199, 63%, 75%);
+}
+
+ 
+.loader {
+    position: relative;
+    width: 120px;
+    height: 90px;
+}
+
+.loader:before {
+    content: "";
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #3a88db;
+    animation: loading-bounce 0.5s ease-in-out infinite alternate;
+}
+
+.loader:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 7px;
+    width: 45px;
+    border-radius: 4px;
+    box-shadow: 0 5px 0 #36a5d9, -35px 50px 0 #36a5d9, -70px 95px 0 #36a5d9;
+    animation: loading-step 1s ease-in-out infinite;
+}
+
+ 
+@keyframes loading-bounce {
+    0%   { transform: scale(1, 0.7); }
+    40%  { transform: scale(0.8, 1.2); }
+    60%  { transform: scale(1, 1); }
+    100% { bottom: 140px; }
+}
+
+ 
+@keyframes loading-step {
+    0% {
+        box-shadow: 0 10px 0 rgba(0, 0, 0, 0),
+                    0 10px 0 #36a5d9,
+                    -35px 50px 0 #36a5d9,
+                    -70px 90px 0 #36a5d9;
+    }
+    100% {
+        box-shadow: 0 10px 0 #36a5d9,
+                    -35px 50px 0 #36a5d9,
+                    -70px 90px 0 #36a5d9,
+                    -70px 90px 0 rgba(0, 0, 0, 0);
+    }
+}
+
+ 
+@keyframes scaleAndFade {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+.scaleAndFadeout {
+  animation: scaleAndFade 0.5s forwards;  
+}
+</style>
+
+<script>
+function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        setTimeout(() => {
+            
+            loading.classList.add("scaleAndFadeout");
+            loading.addEventListener('animationend', () => {
+                loading.style.display = "none";
+            });
+        }, 1500); 
+    });
+}
+initLoading();
+</script>
+
     </head>
     <body class="template-archives">
     <script>
@@ -213,29 +309,6 @@
         
         <li class="menu-bottom-section">
             <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                                
-                                    <option value="https://prominsegsj.github.io/en/" >English</option>
-                                
-                                    <option value="https://prominsegsj.github.io/" selected>简体中文</option>
-                                
-                            </select>
-                        </li>
-                    
-                
 
                 
                     <li id="dark-mode-toggle">
@@ -268,6 +341,45 @@
         <h2 class="section-title">Categories</h2>
         <div class="subsection-list">
             <div class="article-list--tile">
+                
+                    
+<article class="">
+    <a href="/categories/hugo/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo</h2>
+        </div>
+    </a>
+</article>
+
+                
+                    
+<article class="">
+    <a href="/categories/%E7%BC%96%E7%A8%8B/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">编程</h2>
+        </div>
+    </a>
+</article>
+
+                
+                    
+<article class="">
+    <a href="/categories/%E7%A4%BA%E4%BE%8B/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">示例</h2>
+        </div>
+    </a>
+</article>
+
                 
                     
 <article class="has-image">
@@ -361,15 +473,15 @@
         <div class="article-list--compact">
             
                 <article>
-    <a href="/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+    <a href="/p/my-first-blog/">
         <div class="article-details">
             <h2 class="article-title">我的第一篇博客</h2>
             <footer class="article-time">
-                <time datetime='2025-08-25T00:00:00Z'>Aug 25, 2025</time>
+                <time datetime='2025-08-27T00:00:00Z'>Aug 27, 2025</time>
             </footer>
         </div>
             <div class="article-image">
-                <img src="/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/1_hu_ee14b6bffa253676.jpg" 
+                <img src="/p/my-first-blog/1_hu_ee14b6bffa253676.jpg" 
                         width="120"
                         height="120" 
                         alt="我的第一篇博客"
@@ -377,6 +489,17 @@
                 
             </div>
         
+    </a>
+</article>
+            
+                <article>
+    <a href="/p/%E7%A4%BA%E4%BE%8B%E6%A8%A1%E7%89%88/">
+        <div class="article-details">
+            <h2 class="article-title">示例模版</h2>
+            <footer class="article-time">
+                <time datetime='2025-08-24T00:00:00Z'>Aug 24, 2025</time>
+            </footer>
+        </div>
     </a>
 </article>
             
@@ -851,6 +974,7 @@ input:hover,
   
   
 
+<script defer src="https://events.vercount.one/js"></script>
   
 
 
@@ -908,6 +1032,9 @@ input:hover,
     }
   </style>
   
+
+
+
     </body>
 </html>
 

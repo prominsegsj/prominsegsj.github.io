@@ -7,7 +7,140 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>小郭不背锅</copyright>
-        <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://prominsegsj.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 27 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://prominsegsj.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>我的第一篇博客</title>
+        <link>https://prominsegsj.github.io/p/my-first-blog/</link>
+        <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/p/my-first-blog/</guid>
+        <description>&lt;img src="https://prominsegsj.github.io/p/my-first-blog/1.jpg" alt="Featured image of post 我的第一篇博客" /&gt;&lt;h1 id=&#34;搭建过程&#34;&gt;搭建过程 &lt;!-- 一级标题 --&gt;
+&lt;/h1&gt;&lt;p&gt;在8月25号到27号的搭建过程问题汇总&lt;/p&gt;
+&lt;h2 id=&#34;问题&#34;&gt;问题
+&lt;/h2&gt;&lt;p&gt;1.如何发布自己的文章&lt;/p&gt;
+&lt;p&gt;2.网站的favicon没有显示问题&lt;/p&gt;
+&lt;p&gt;3.主要的显示问题&lt;/p&gt;
+&lt;h2 id=&#34;解决过程&#34;&gt;解决过程 &lt;!-- 二级标题 --&gt;
+&lt;/h2&gt;&lt;p&gt;稍微先记录一下搭建本网站的过程遇到的问题和解决方法：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/my-first-blog/1.jpg&#34;
+	width=&#34;715&#34;
+	height=&#34;536&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/my-first-blog/1_hu_a5c5af5cb085ed96.jpg 480w, https://prominsegsj.github.io/p/my-first-blog/1_hu_ad04121202df5e11.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;添加图片示意图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;1.网站的favicon没有显示问题参考：&lt;a class=&#34;link&#34; href=&#34;https://ellaann.github.io/p/%E6%B7%BB%E5%8A%A0favicon%E5%88%B0hugo%E7%9A%84%E7%BD%91%E7%AB%99%E4%B8%AD/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;favicon参考网址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2.主要学习b站up主（此处贴的是他的个人网站的那篇博客）：&lt;a class=&#34;link&#34; href=&#34;https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考的B站UP主的个人网页&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;3.在添加动态背景时粒子效果一直加载不成功，用b站up主的源码复制发现不行，后面换路径就可以了。&lt;/p&gt;
+&lt;p&gt;4.在编写个人的博客文章采用markdown编写规则：&lt;/p&gt;
+&lt;h3 id=&#34;文章写法示例&#34;&gt;文章写法示例 &lt;!-- 三级标题 --&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;文章写法：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;加粗&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;斜体&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;删除线&lt;/del&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;代码示例：
+&lt;ul&gt;
+&lt;li&gt;代码写法示例：
+&lt;ul&gt;
+&lt;li&gt;在 Markdown 里用三个反引号开启/关闭代码块。&lt;/li&gt;
+&lt;li&gt;指定语言后，Hugo 会自动高亮。&lt;/li&gt;
+&lt;li&gt;例1：python
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello Hugo!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;例2：c++
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Hello, Hugo!&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;总结心得&#34;&gt;总结心得
+&lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>示例模版</title>
+        <link>https://prominsegsj.github.io/p/%E7%A4%BA%E4%BE%8B%E6%A8%A1%E7%89%88/</link>
+        <pubDate>Sun, 24 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/p/%E7%A4%BA%E4%BE%8B%E6%A8%A1%E7%89%88/</guid>
+        <description>&lt;h1 id=&#34;一级标题&#34;&gt;一级标题
+&lt;/h1&gt;&lt;p&gt;欢迎来到我的 Hugo 博客！这里是正文内容示例。&lt;/p&gt;
+&lt;h2 id=&#34;二级标题&#34;&gt;二级标题
+&lt;/h2&gt;&lt;p&gt;你可以写段落：&lt;/p&gt;
+&lt;p&gt;这是第一段正文。&lt;/p&gt;
+&lt;p&gt;这是第二段正文，可以包含 &lt;strong&gt;加粗&lt;/strong&gt;、&lt;em&gt;斜体&lt;/em&gt; 和 &lt;del&gt;删除线&lt;/del&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;列表示例&#34;&gt;列表示例
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;无序列表项 1&lt;/li&gt;
+&lt;li&gt;无序列表项 2
+&lt;ul&gt;
+&lt;li&gt;子列表项 A&lt;/li&gt;
+&lt;li&gt;子列表项 B&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;有序列表项 1&lt;/li&gt;
+&lt;li&gt;有序列表项 2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;链接与图片&#34;&gt;链接与图片
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;点击访问 Hugo 官网&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;内置图片示例（页面 bundle 推荐方式）：&lt;/p&gt;
+&lt;!-- ![示意图](image1.png) --&gt;
+&lt;h2 id=&#34;代码块示例&#34;&gt;代码块示例
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello Hugo!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>Markdown Syntax Guide</title>
         <link>https://prominsegsj.github.io/p/markdown-syntax-guide/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
