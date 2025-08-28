@@ -40,7 +40,7 @@
 &lt;p&gt;2.主要学习b站up主（此处贴的是他的个人网站的那篇博客）：&lt;a class=&#34;link&#34; href=&#34;https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;参考的B站UP主的个人网页&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;3.在添加动态背景时粒子效果一直加载不成功，用b站up主的源码复制发现不行，后面换路径就可以了。&lt;/p&gt;
-&lt;p&gt;4.在编写个人的博客文章采用markdown编写规则：&lt;/p&gt;
+&lt;p&gt;4.在编写个人的博客文章采用markdown编写规则。&lt;/p&gt;
 &lt;h3 id=&#34;文章写法示例&#34;&gt;文章写法示例 &lt;!-- 三级标题 --&gt;
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;文章写法：
@@ -93,6 +93,22 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;5.技术链接改行数：
+&lt;img src=&#34;https://prominsegsj.github.io/p/my-first-blog/2.png&#34;
+	width=&#34;1130&#34;
+	height=&#34;958&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/my-first-blog/2_hu_bbb6fad3cf762fbc.png 480w, https://prominsegsj.github.io/p/my-first-blog/2_hu_3c54b1a7b86612fa.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;链接界面代码&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;117&#34;
+		data-flex-basis=&#34;283px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;6.更改主页的文章标题及内容居中文件路径:assets\scss\custom.scss&lt;/p&gt;
 &lt;h2 id=&#34;总结心得&#34;&gt;总结心得
 &lt;/h2&gt;</description>
         </item>
