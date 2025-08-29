@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="欢迎来到小郭不背锅的个人博客频道，这里记录一位梦想成为技术咸鱼家的点点又滴滴！">
 <title>Tag: Html - 小郭不背锅</title>
 
-<link rel='canonical' href='https://prominsegsj.github.io/tags/html/'>
+<link rel='canonical' href='http://localhost:1313/tags/html/'>
 
 <link rel="stylesheet" href="/scss/style.min.84e9e3518f269b022a23d4be353b0038d7bb6000d763cac7f1a0b9b92d507bc7.css"><meta property='og:title' content="Tag: Html - 小郭不背锅">
 <meta property='og:description' content="欢迎来到小郭不背锅的个人博客频道，这里记录一位梦想成为技术咸鱼家的点点又滴滴！">
-<meta property='og:url' content='https://prominsegsj.github.io/tags/html/'>
+<meta property='og:url' content='http://localhost:1313/tags/html/'>
 <meta property='og:site_name' content='小郭不背锅'>
 <meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-08-27T00:00:00&#43;00:00 '/>
 <meta name="twitter:title" content="Tag: Html - 小郭不背锅">
-<meta name="twitter:description" content="欢迎来到小郭不背锅的个人博客频道，这里记录一位梦想成为技术咸鱼家的点点又滴滴！"><link rel="alternate" type="application/rss&#43;xml" href="https://prominsegsj.github.io/tags/html/index.xml">
+<meta name="twitter:description" content="欢迎来到小郭不背锅的个人博客频道，这里记录一位梦想成为技术咸鱼家的点点又滴滴！"><link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/tags/html/index.xml">
     <link rel="shortcut icon" href="/favicon.ico" />
 <div class="loading">
     <div class="loader"></div>
@@ -226,7 +226,7 @@ initLoading();
 
 
                 
-                <span>主页</span>
+                <span>主页 | Home</span>
             </a>
         </li>
         
@@ -304,6 +304,18 @@ initLoading();
 
                 
                 <span>技术链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E7%94%9F%E6%B4%BB%E7%B4%A2%E9%81%93/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-aerial-lift"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.876 2.008a1 1 0 1 1 .248 1.984l-7.124 .891v2.117h4.2a1 1 0 0 1 .688 .274l.087 .093c2.79 3.417 2.717 9.963 -.226 13.295a1 1 0 0 1 -.749 .338h-10.106a1 1 0 0 1 -.763 -.353c-2.86 -3.373 -2.86 -9.92 0 -13.294a1 1 0 0 1 .763 -.353h4.106v-1.867l-6.876 .86a1 1 0 0 1 -1.095 -.754l-.021 -.115a1 1 0 0 1 .868 -1.116l7.996 -1l.011 -.001l.008 -.001zm-8.876 6.992h-3.617l-.051 .072c-.718 1.042 -1.149 2.41 -1.292 3.844l-.008 .084h4.968zm5.698 0h-3.698v4h4.979l-.005 -.072c-.123 -1.436 -.533 -2.811 -1.232 -3.864z" /></svg>
+                
+                <span>生活索道</span>
             </a>
         </li>
         
@@ -505,6 +517,13 @@ initLoading();
 </article>
         
     </section>
+
+<div class="reading-progress">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+</div>
+
+<button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">↑</button>
+
 <footer class="site-footer">
     <section class="copyright">
         &copy; 
@@ -513,8 +532,178 @@ initLoading();
     </section>
     
     
-</footer>
+    <section class="powerby" style="margin-top: 0.5rem;">
+        <div id="site-runtime" style="font-size: 1.15em; color: #ffffff;">
+            本站已安全运行 <span id="runtime-days">0</span> 天 <span id="runtime-hours">0</span> 时 <span id="runtime-mins">0</span> 分 <span id="runtime-secs">0</span> 秒
+        </div>
+    </section>
 
+    <script>
+        
+        const startDate = new Date('2025-08-25T12:00:00'); 
+
+        function updateRuntime() {
+            const now = new Date();
+            const diff = now - startDate; 
+
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            
+            document.getElementById('runtime-days').innerText = days;
+            document.getElementById('runtime-hours').innerText = hours;
+            document.getElementById('runtime-mins').innerText = minutes;
+            document.getElementById('runtime-secs').innerText = seconds;
+        }
+
+        
+        updateRuntime();
+        
+        setInterval(updateRuntime, 1000);
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.getElementById('readingProgress');
+            const scrollButton = document.getElementById('scrollToTop');
+            
+            if (progressBar) {
+                
+                window.addEventListener('scroll', function() {
+                    const windowHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    const progress = (scrollTop / documentHeight) * 100;
+                    progressBar.style.width = progress + '%';
+                    
+                    
+                    if (scrollButton && scrollTop > 500) {
+                        scrollButton.style.display = 'flex';
+                    } else if (scrollButton) {
+                        scrollButton.style.display = 'none';
+                    }
+                });
+                
+                
+                progressBar.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const clickPosition = e.clientX - rect.left;
+                    const percentage = clickPosition / rect.width;
+                    
+                    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const targetPosition = documentHeight * percentage;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            
+            window.scrollToTop = function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+        });
+    </script>
+    
+    <style>
+     
+    .reading-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        backdrop-filter: blur(5px);
+    }
+
+    .reading-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #ff6b6b, #ff8e53, #fea82f, #4ecdc4, #45b7d1);
+        width: 0%;
+        transition: width 0.1s ease;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .reading-progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.4), 
+            transparent);
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+
+     
+    .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        border-radius: 50%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        border: none;
+        outline: none;
+    }
+
+    .scroll-to-top:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+     
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #ff6b6b, #4ecdc4);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #ff5252, #26a69a);
+    }
+    </style>
+    
+    
+</footer>
 
             </main>
         </div>
@@ -522,7 +711,7 @@ initLoading();
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.e56f87e94719c2923ea40a2d4b39a2e5eae6b11d33f08ae36f552b59b1540951.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -550,9 +739,9 @@ initLoading();
 
 <script>
     
-    const cssPath = 'https:\/\/prominsegsj.github.io\/waifu\/waifu.css'
-    const tipsJsonPath = 'https:\/\/prominsegsj.github.io\/waifu\/waifu-tips.json'
-    const live2dJsPath = 'https:\/\/prominsegsj.github.io\/waifu\/live2d.min.js'
+    const cssPath = 'http:\/\/localhost:1313\/waifu\/waifu.css'
+    const tipsJsonPath = 'http:\/\/localhost:1313\/waifu\/waifu-tips.json'
+    const live2dJsPath = 'http:\/\/localhost:1313\/waifu\/live2d.min.js'
     
     const live2d_path = "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/";
 
@@ -644,7 +833,7 @@ initLoading();
 <style>
     @font-face {
       font-family: 'ShinRetroMaruGothic';
-      src: url('https://prominsegsj.github.io/font/ShinRetroMaruGothic-Medium.ttf') format('truetype');
+      src: url('http://localhost:1313/font/ShinRetroMaruGothic-Medium.ttf') format('truetype');
     }
   
     :root {
@@ -738,7 +927,7 @@ input:hover,
         cursor: pointer;
         width: 30px;
         height: 30px;
-        background-image: url('https://prominsegsj.github.io/icons/backTop.svg');
+        background-image: url('http://localhost:1313/icons/backTop.svg');
     }
 </style>
 
@@ -845,7 +1034,7 @@ input:hover,
       
       let img = document.createElement('img');
       img.classList.add('code-more-img');
-      img.src = 'https:\/\/prominsegsj.github.io\/icons\/codeMore.png'
+      img.src = 'http:\/\/localhost:1313\/icons\/codeMore.png'
       
       codeMoreBtn.appendChild(img);
       codeMoreBox.appendChild(codeMoreBtn);

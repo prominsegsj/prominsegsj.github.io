@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>示例 on 小郭不背锅</title>
-        <link>https://prominsegsj.github.io/categories/%E7%A4%BA%E4%BE%8B/</link>
+        <link>http://localhost:1313/categories/%E7%A4%BA%E4%BE%8B/</link>
         <description>Recent content in 示例 on 小郭不背锅</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>小郭不背锅</copyright>
-        <lastBuildDate>Sun, 24 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://prominsegsj.github.io/categories/%E7%A4%BA%E4%BE%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 24 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%A4%BA%E4%BE%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>示例模版</title>
-        <link>https://prominsegsj.github.io/p/%E7%A4%BA%E4%BE%8B%E6%A8%A1%E7%89%88/</link>
+        <link>http://localhost:1313/p/%E7%A4%BA%E4%BE%8B%E6%A8%A1%E7%89%88/</link>
         <pubDate>Sun, 24 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://prominsegsj.github.io/p/%E7%A4%BA%E4%BE%8B%E6%A8%A1%E7%89%88/</guid>
+        <guid>http://localhost:1313/p/%E7%A4%BA%E4%BE%8B%E6%A8%A1%E7%89%88/</guid>
         <description>&lt;h1 id=&#34;一级标题&#34;&gt;一级标题
 &lt;/h1&gt;&lt;p&gt;欢迎来到我的 Hugo 博客！这里是正文内容示例。&lt;/p&gt;
 &lt;h2 id=&#34;二级标题&#34;&gt;二级标题
