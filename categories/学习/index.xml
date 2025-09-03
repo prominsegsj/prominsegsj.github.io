@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>学习 on 小郭不背锅</title>
+        <link>https://prominsegsj.github.io/categories/%E5%AD%A6%E4%B9%A0/</link>
+        <description>Recent content in 学习 on 小郭不背锅</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>小郭不背锅</copyright>
+        <lastBuildDate>Mon, 01 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://prominsegsj.github.io/categories/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【机器视觉】yolo视觉检测</title>
+        <link>https://prominsegsj.github.io/p/yolo/</link>
+        <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/p/yolo/</guid>
+        <description>&lt;img src="https://prominsegsj.github.io/p/yolo/1.png" alt="Featured image of post 【机器视觉】yolo视觉检测" /&gt;&lt;h1 id=&#34;yolo视觉学习&#34;&gt;YOLO视觉学习
+&lt;/h1&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;↪︎&lt;strong&gt;初步接触深度学习视觉检测，主要为学习YOLOV8为初步入门使用教程学习&lt;/strong&gt;🫣&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;1-环境配置&#34;&gt;1. 环境配置
+&lt;/h2&gt;&lt;p&gt;(发现基本上的学习历程大部分都卡在了环境搭建😭，所以我尽量把细节和流程写详细一点！)&lt;br&gt;&lt;/p&gt;
+&lt;h3 id=&#34;11-安装miniconda&#34;&gt;1.1 安装miniconda
+&lt;/h3&gt;&lt;p&gt;安装miniconda版本为py38windos版本:&lt;br&gt;
+🔹https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/&lt;br&gt;
+【主要用于虚拟环境的配置，在python开发中都可以用的到】&lt;br&gt;&lt;/p&gt;
+&lt;h3 id=&#34;12-虚拟环境搭建&#34;&gt;1.2 虚拟环境搭建
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;(1) 在conda终端中新建一个名为yolov8的虚拟环境，指定python版本为3.8：conda create -n yolov8 python=3.8【指定python版本位3.8版本】&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;(2) 激活/切换到yolov8虚拟环境：conda activate yolov8（虚拟环境名称）&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;13-镜像源配置主要是方便本地下载&#34;&gt;1.3 镜像源配置(主要是方便本地下载)
+&lt;/h3&gt;&lt;p&gt;pypi配置国内清华镜像：（替换为长期，就是将你以后的pip安装下载的通道改为从国内的镜像来下载，大部分的库或者安装都是在国外网站，下载比较慢，所以替换镜像为清华源，还有其他的类似的阿里等等）&lt;br&gt;
+🔹https://mirrors.tuna.tsinghua.edu.cn/help/pypi/&lt;br&gt;&lt;/p&gt;
+&lt;h3 id=&#34;14-pytorch环境安装&#34;&gt;1.4 pytorch环境安装
+&lt;/h3&gt;&lt;p&gt;pytorch环境安装：https://pytorch.org/（注意选择合适版本）&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/yolo/2.png&#34;
+	width=&#34;1165&#34;
+	height=&#34;659&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/yolo/2_hu_2882edc037d6ea0a.png 480w, https://prominsegsj.github.io/p/yolo/2_hu_adc1fa1e000d1491.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;pytorch版本选择&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;176&#34;
+		data-flex-basis=&#34;424px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;15安装ultralyticsyolov8&#34;&gt;1.5安装ultralytics（yolov8）：
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;(1) 安装zip总文件：&lt;br&gt;
+🔹https://github.com/ultralytics/ultralytics&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;(2) 终端进入文件夹\ultralytics-main输入命令：pip install -e .  【后面的点要带！】&lt;br&gt;
+【&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1aSKJzGEjh?spm_id_from=333.788.videopod.episodes&amp;amp;vd_source=b0f5272da83bbf0fd5569aa17bceb192&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;详细介绍还是不够的话可以参考此b站视频🤗🤗&lt;/a&gt;】&lt;/li&gt;
+&lt;li&gt;(3) ultralytics官方文档:&lt;br&gt;
+🔹https://docs.ultralytics.com/zh/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-模型预测及训练使用&#34;&gt;2. 模型预测及训练使用
+&lt;/h2&gt;&lt;h3 id=&#34;21-标注图片环境下载&#34;&gt;2.1 标注图片环境下载
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;(1) 下载labelimg：pip install labelimg&lt;/li&gt;
+&lt;li&gt;(2) 启动labelimg：labelimg&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;22-训练模型&#34;&gt;2.2 训练模型
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;(1) 标注完文件将文件创建好：
+&lt;ul&gt;
+&lt;li&gt;Train-项目名
+&lt;ul&gt;
+&lt;li&gt;images
+&lt;ul&gt;
+&lt;li&gt;train:（存放所有照片）&lt;/li&gt;
+&lt;li&gt;val:（存放验证集照片）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;labels
+&lt;ul&gt;
+&lt;li&gt;train:（存放所有标注后的.txt）&lt;/li&gt;
+&lt;li&gt;val:（存放验证标志.txt）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;classes.txt（标注种类文件）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;(2) 创建好放到&lt;strong&gt;Train-项目名&lt;/strong&gt;文件将文件放到datasets文件夹内&lt;/li&gt;
+&lt;li&gt;(3) 写好相应的yaml文件之后开始到tarin.py文件填好相应的文件路径和名称，最后开始训练
+&lt;ul&gt;
+&lt;li&gt;配置.yaml文件示例
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Train-项目名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;train&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;images/train&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;images/val&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#可选项&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;names&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;标注时第一个标注对象名称&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;标注时第二个标注对象名称&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;nc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;对象种类个数 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;train.py文件示例
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;ultralytics&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;YOLO&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;model&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;YOLO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;yolov8n.pt&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#参考预测模型文件，如果是自己的可以放自己last.pt文件继续训练&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;model&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;train&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;配置.yaml&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;workers&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;epochs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;50&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;#后面参数可自行根据训练硬件配置选择&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;训练完成！&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;(4) 训练完最终模型文件存放在runs/detect/trainxx/weights/xxx.pt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;23-跑训练模型效果&#34;&gt;2.3 跑训练模型效果
+&lt;/h3&gt;&lt;p&gt;简单使用示例代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;ultralytics&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;YOLO&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;yolo&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;YOLO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;./best.pt&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 小目标检测专用配置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yolo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;source&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;./detect_Text/Player.mp4&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;conf&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.05&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;              &lt;span class=&#34;c1&#34;&gt;# 低置信度&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;imgsz&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1280&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;             &lt;span class=&#34;c1&#34;&gt;# 大尺寸输入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;iou&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;                &lt;span class=&#34;c1&#34;&gt;# 较低的IoU阈值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;max_det&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;            &lt;span class=&#34;c1&#34;&gt;# 增加最大检测数量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;agnostic_nms&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;     &lt;span class=&#34;c1&#34;&gt;# 类相关的NMS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;augment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;           &lt;span class=&#34;c1&#34;&gt;# 测试时增强&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# for i in result:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#     print(i.boxes.xywh.cpu().numpy())&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;3-最终训练效果展示&#34;&gt;3. 最终训练效果展示
+&lt;/h2&gt;&lt;p&gt;下面是我训练YOLOv8模型后的检测效果照片：(用的是我朋友之前在人民公园跟大爷一起踢毽子的视频，此处肖像权省略略略略😝😝😝，视频太大传不上去，又不想上传到地方托管，所以只取了其中一张照片)&lt;br&gt;
+&lt;img src=&#34;https://prominsegsj.github.io/p/yolo/3.png&#34;
+	width=&#34;2230&#34;
+	height=&#34;1125&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/yolo/3_hu_caaa528050a05f82.png 480w, https://prominsegsj.github.io/p/yolo/3_hu_43a75e6ff29f78bb.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;第一版自主训练跑效果图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;475px&#34;
+	
+&gt;
+视频：&lt;del&gt;YOLOv8模型在自定义数据集上的检测效果,数据集我训练的比较少,最终的视频效果一般,后面需要的话还是增大数据训练集&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4-学习心得总结&#34;&gt;4. 学习心得总结
+&lt;/h2&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;🔅初步整个学习历程下来还是在配置训练环境，主要是学习到windos系统下的虚拟环境的配置，还有yolov8主要训练流程还有打标工具labelimg下载等等。详细的系统深度学习还有其他的标注工具可以&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV19Z31z8ENH/?spm_id_from=333.1387.favlist.content.click&amp;amp;vd_source=b0f5272da83bbf0fd5569aa17bceb192&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考小土堆up&lt;/a&gt;。后面还有更深度的具体如何实现深度学习的方法，卷积等等算法实现可以为后续深入地学习了解。还有后面如何将YOLO视觉具体应用到类似ROS上，如何视觉和底盘或者机械臂等协同工作的流程还要继续学习研究！本篇只作为初步入门学习使用YOLO😊.&lt;/p&gt;&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
