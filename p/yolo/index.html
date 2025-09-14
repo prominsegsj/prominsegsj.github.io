@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="yolo 深度学习智能视觉检测">
+<title>【机器视觉】yolo视觉检测</title>
+
+<link rel='canonical' href='https://prominsegsj.github.io/p/yolo/'>
+
+<link rel="stylesheet" href="/scss/style.min.84e9e3518f269b022a23d4be353b0038d7bb6000d763cac7f1a0b9b92d507bc7.css"><meta property='og:title' content="【机器视觉】yolo视觉检测">
+<meta property='og:description' content="yolo 深度学习智能视觉检测">
+<meta property='og:url' content='https://prominsegsj.github.io/p/yolo/'>
+<meta property='og:site_name' content='小郭不背锅'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='机器视觉' /><meta property='article:published_time' content='2025-09-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-01T00:00:00&#43;00:00'/><meta property='og:image' content='https://prominsegsj.github.io/p/yolo/1.png' />
+<meta name="twitter:title" content="【机器视觉】yolo视觉检测">
+<meta name="twitter:description" content="yolo 深度学习智能视觉检测"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://prominsegsj.github.io/p/yolo/1.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+<div class="loading">
+    <div class="loader"></div>
+</div>
+
+<style>
+ 
+.loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 99;
+    background-color: hsl(199, 63%, 75%);
+}
+
+ 
+.loader {
+    position: relative;
+    width: 120px;
+    height: 90px;
+}
+
+.loader:before {
+    content: "";
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #3a88db;
+    animation: loading-bounce 0.5s ease-in-out infinite alternate;
+}
+
+.loader:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 7px;
+    width: 45px;
+    border-radius: 4px;
+    box-shadow: 0 5px 0 #36a5d9, -35px 50px 0 #36a5d9, -70px 95px 0 #36a5d9;
+    animation: loading-step 1s ease-in-out infinite;
+}
+
+ 
+@keyframes loading-bounce {
+    0%   { transform: scale(1, 0.7); }
+    40%  { transform: scale(0.8, 1.2); }
+    60%  { transform: scale(1, 1); }
+    100% { bottom: 140px; }
+}
+
+ 
+@keyframes loading-step {
+    0% {
+        box-shadow: 0 10px 0 rgba(0, 0, 0, 0),
+                    0 10px 0 #36a5d9,
+                    -35px 50px 0 #36a5d9,
+                    -70px 90px 0 #36a5d9;
+    }
+    100% {
+        box-shadow: 0 10px 0 #36a5d9,
+                    -35px 50px 0 #36a5d9,
+                    -70px 90px 0 #36a5d9,
+                    -70px 90px 0 rgba(0, 0, 0, 0);
+    }
+}
+
+ 
+@keyframes scaleAndFade {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+.scaleAndFadeout {
+  animation: scaleAndFade 0.5s forwards;  
+}
+</style>
+
+<script>
+function initLoading() {
+    let loading = document.querySelector(".loading");
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        setTimeout(() => {
+            
+            loading.classList.add("scaleAndFadeout");
+            loading.addEventListener('animationend', () => {
+                loading.style.display = "none";
+            });
+        }, 1500); 
+    });
+}
+initLoading();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_34ea3bfdb6c513b1.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🫣</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">小郭不背锅</a></h1>
+            <h2 class="site-description">欢迎来到小郭不背锅的个人博客频道，这里记录一位梦想成为技术咸鱼家的点点又滴滴！🎈🎇</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1782631305'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/prominsegsj'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12.707 2.293l9 9c.63 .63 .184 1.707 -.707 1.707h-1v6a3 3 0 0 1 -3 3h-1v-7a3 3 0 0 0 -2.824 -2.995l-.176 -.005h-2a3 3 0 0 0 -3 3v7h-1a3 3 0 0 1 -3 -3v-6h-1c-.89 0 -1.337 -1.077 -.707 -1.707l9 -9a1 1 0 0 1 1.414 0m.293 11.707a1 1 0 0 1 1 1v7h-4v-7a1 1 0 0 1 .883 -.993l.117 -.007z" /></svg>
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-archive"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M2 3m0 2a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2z" /><path d="M19 9c.513 0 .936 .463 .993 1.06l.007 .14v7.2c0 1.917 -1.249 3.484 -2.824 3.594l-.176 .006h-10c-1.598 0 -2.904 -1.499 -2.995 -3.388l-.005 -.212v-7.2c0 -.663 .448 -1.2 1 -1.2h14zm-5 2h-4l-.117 .007a1 1 0 0 0 0 1.986l.117 .007h4l.117 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z" /></svg>
+                
+                <span>博客归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E%E7%AB%99%E4%B8%BB/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" /><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" /></svg>
+                
+                <span>关于站主</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-zoom-code"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3.072a8 8 0 0 1 2.32 11.834l5.387 5.387a1 1 0 0 1 -1.414 1.414l-5.388 -5.387a8 8 0 0 1 -12.905 -6.32l.005 -.285a8 8 0 0 1 11.995 -6.643m-5.293 4.22a1 1 0 0 0 -1.414 0l-2 2a1 1 0 0 0 0 1.415l2 2a1 1 0 0 0 1.414 0l.083 -.094a1 1 0 0 0 -.083 -1.32l-1.292 -1.293l1.292 -1.293a1 1 0 0 0 0 -1.414m4 0a1 1 0 0 0 -1.414 0l-.083 .095a1 1 0 0 0 .083 1.32l1.292 1.292l-1.292 1.293a1 1 0 0 0 1.414 1.414l2 -2a1 1 0 0 0 0 -1.414z" /></svg>
+                
+                <span>本站搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E7%B4%A2%E9%81%93/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-aerial-lift"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.876 2.008a1 1 0 1 1 .248 1.984l-7.124 .891v2.117h4.2a1 1 0 0 1 .688 .274l.087 .093c2.79 3.417 2.717 9.963 -.226 13.295a1 1 0 0 1 -.749 .338h-10.106a1 1 0 0 1 -.763 -.353c-2.86 -3.373 -2.86 -9.92 0 -13.294a1 1 0 0 1 .763 -.353h4.106v-1.867l-6.876 .86a1 1 0 0 1 -1.095 -.754l-.021 -.115a1 1 0 0 1 .868 -1.116l7.996 -1l.011 -.001l.008 -.001zm-8.876 6.992h-3.617l-.051 .072c-.718 1.042 -1.149 2.41 -1.292 3.844l-.008 .084h4.968zm5.698 0h-3.698v4h4.979l-.005 -.072c-.123 -1.436 -.533 -2.811 -1.232 -3.864z" /></svg>
+                
+                <span>友情索道</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-dumpling"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.003 2.04a3.53 3.53 0 0 1 2.602 .62l.09 .07l.149 -.11a3.53 3.53 0 0 1 3.044 -.462l.207 .072a3.53 3.53 0 0 1 1.99 1.903l.014 .031l.045 -.004a3.53 3.53 0 0 1 2.624 .879l.153 .144l.358 .358c1.976 1.977 -.32 6.748 -4.655 11.083c-4.336 4.335 -9.106 6.632 -11.083 4.655l-.382 -.382l-.135 -.145a3.53 3.53 0 0 1 -.87 -2.556l.01 -.1l-.162 -.072a3.53 3.53 0 0 1 -1.838 -2.124l-.055 -.192a3.53 3.53 0 0 1 .56 -2.937l.062 -.079l-.07 -.092a3.53 3.53 0 0 1 -.644 -2.401l.025 -.2a3.53 3.53 0 0 1 1.707 -2.505l.046 -.026l-.005 -.14a3.53 3.53 0 0 1 .885 -2.345l.15 -.16l.159 -.149a3.53 3.53 0 0 1 2.346 -.884l.14 .004l.026 -.046a3.53 3.53 0 0 1 2.308 -1.67z" /></svg>
+                
+                <span>技术链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-环境配置">1. 环境配置</a>
+      <ul>
+        <li><a href="#11-安装miniconda">1.1 安装miniconda</a></li>
+        <li><a href="#12-虚拟环境搭建">1.2 虚拟环境搭建</a></li>
+        <li><a href="#13-镜像源配置主要是方便本地下载">1.3 镜像源配置(主要是方便本地下载)</a></li>
+        <li><a href="#14-pytorch环境安装">1.4 pytorch环境安装</a></li>
+        <li><a href="#15安装ultralyticsyolov8">1.5安装ultralytics（yolov8）：</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-模型预测及训练使用">2. 模型预测及训练使用</a>
+      <ul>
+        <li><a href="#21-标注图片环境下载">2.1 标注图片环境下载</a></li>
+        <li><a href="#22-训练模型">2.2 训练模型</a></li>
+        <li><a href="#23-跑训练模型效果">2.3 跑训练模型效果</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-最终训练效果展示">3. 最终训练效果展示</a></li>
+    <li><a href="#4-学习心得总结">4. 学习心得总结</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/yolo/">
+                <img src="/p/yolo/1_hu_da5a2ff77e5e8f90.png"
+                        srcset="/p/yolo/1_hu_da5a2ff77e5e8f90.png 800w, /p/yolo/1_hu_4b7b579f9a7ef6b6.png 1600w"
+                        width="800" 
+                        height="402" 
+                        loading="lazy"
+                        alt="Featured image of post 【机器视觉】yolo视觉检测" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/yolo/" >
+                YOLO
+            </a>
+        
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/" >
+                学习
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/yolo/">【机器视觉】yolo视觉检测</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            yolo 深度学习智能视觉检测
+        </h3>
+        
+    </div>
+
+    
+    
+    
+
+    <footer class="article-time">
+        <div class="article-time-item">
+            <?xml version="1.0" ?><svg style="enable-background:new 0 0 64 64;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x32_5_attachment"/><g id="_x32_4_office"/><g id="_x32_3_pin"/><g id="_x32_2_business_card"/><g id="_x32_1_form"/><g id="_x32_0_headset"/><g id="_x31_9_video_call"/><g id="_x31_8_letter_box"/><g id="_x31_7_papperplane"/><g id="_x31_6_laptop"/><g id="_x31_5_connection"/><g id="_x31_4_phonebook"/><g id="_x31_3_classic_telephone"/><g id="_x31_2_sending_mail"/><g id="_x31_1_man_talking"/><g id="_x31_0_date"><g><g><path d="M53.1494,5.7119h-3.8086V5.3877c0-2.3433-1.9063-4.2495-4.249-4.2495c-2.3408,0-4.2461,1.9063-4.2461,4.2495v0.3242     H22.4941V5.2461C22.4941,2.9048,20.5889,1,18.248,1c-2.3428,0-4.249,1.9048-4.249,4.2461v0.4658h-3.1455     c-4.4746,0-8.1143,3.8633-8.1143,8.6123v40.0635c0,4.749,3.6396,8.6123,8.1143,8.6123h42.2959     c4.4727,0,8.1113-3.8633,8.1113-8.6123V14.3242C61.2607,9.5752,57.6221,5.7119,53.1494,5.7119z M42.8457,5.3877     c0-1.2402,1.0078-2.2495,2.2461-2.2495c1.2402,0,2.249,1.0093,2.249,2.2495v3.0596c0,1.2402-1.0088,2.2495-2.249,2.2495     c-1.2383,0-2.2461-1.0093-2.2461-2.2495V5.3877z M15.999,5.2461C15.999,4.0078,17.0078,3,18.248,3     c1.2383,0,2.2461,1.0078,2.2461,2.2461v3.063c0,1.2383-1.0078,2.2461-2.2461,2.2461c-1.2402,0-2.249-1.0078-2.249-2.2461V5.2461z      M59.2607,54.3877c0,3.646-2.7412,6.6123-6.1113,6.6123H10.8535c-3.3711,0-6.1143-2.9663-6.1143-6.6123V17.8652h54.5215V54.3877z      M59.2607,15.8652H4.7393v-1.541c0-3.646,2.7432-6.6123,6.1143-6.6123h3.1455v0.5972c0,2.3413,1.9063,4.2461,4.249,4.2461     c2.3408,0,4.2461-1.9048,4.2461-4.2461V7.7119h18.3516v0.7354c0,2.3433,1.9053,4.2495,4.2461,4.2495     c2.3428,0,4.249-1.9063,4.249-4.2495V7.7119h3.8086c3.3701,0,6.1113,2.9663,6.1113,6.6123V15.8652z"/><path d="M11.4316,56.0688h10.2842h30.8525c0.5527,0,1-0.4478,1-1v-30.854c0-0.5522-0.4473-1-1-1H11.4316c-0.5527,0-1,0.4478-1,1     v30.854C10.4316,55.6211,10.8789,56.0688,11.4316,56.0688z M51.5684,43.7842h-8.2842v-8.2847h8.2842V43.7842z M41.2842,43.7842     H33v-8.2847h8.2842V43.7842z M31,43.7842h-8.2842v-8.2847H31V43.7842z M20.7158,43.7842h-8.2842v-8.2847h8.2842V43.7842z      M12.4316,45.7842h8.2842v8.2847h-8.2842V45.7842z M22.7158,45.7842H31v8.2847h-8.2842V45.7842z M33,45.7842h8.2842v8.2847H33     V45.7842z M51.5684,54.0688h-8.2842v-8.2847h8.2842V54.0688z M51.5684,33.4995h-8.2842v-8.2847h8.2842V33.4995z M41.2842,33.4995     H33v-8.2847h8.2842V33.4995z M31,33.4995h-8.2842v-8.2847H31V33.4995z M12.4316,25.2148h8.2842v8.2847h-8.2842V25.2148z"/></g></g></g><g id="_x30_9_review"/><g id="_x30_8_email"/><g id="_x30_7_information"/><g id="_x30_6_phone_talking"/><g id="_x30_5_women_talking"/><g id="_x30_4_calling"/><g id="_x30_3_women"/><g id="_x30_2_writing"/><g id="_x30_1_chatting"/></svg>
+            <time class="article-time--published">2025-09-01</time>
+        </div>
+    
+        <div class="article-time-separator"> | </div>
+    
+        <div class="article-time-item">
+            <?xml version="1.0" ?><svg style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+	.st0{display:none;}
+</style><g class="st0" id="grid"/><g id="icon"><path d="M8.041,12.659l-1.022,3.708c-0.048,0.173,0.001,0.359,0.128,0.486C7.242,16.949,7.369,17,7.5,17   c0.044,0,0.089-0.006,0.133-0.018l3.708-1.022c0.083-0.023,0.16-0.067,0.221-0.128L23.297,4.096c0.936-0.936,0.936-2.458,0-3.393   c-0.936-0.936-2.458-0.935-3.393,0L8.169,12.438C8.108,12.499,8.063,12.575,8.041,12.659z M8.969,13.052L20.611,1.41   c0.546-0.546,1.434-0.545,1.979,0s0.545,1.434,0,1.979L10.948,15.031l-2.732,0.753L8.969,13.052z"/><path d="M1.818,24h17.364C20.185,24,21,23.185,21,22.182V10.414c0-0.276-0.224-0.5-0.5-0.5s-0.5,0.224-0.5,0.5v11.768   C20,22.633,19.633,23,19.182,23H1.818C1.367,23,1,22.633,1,22.182V4.818C1,4.367,1.367,4,1.818,4h11.768c0.276,0,0.5-0.224,0.5-0.5   S13.862,3,13.586,3H1.818C0.815,3,0,3.815,0,4.818v17.364C0,23.185,0.815,24,1.818,24z"/></g></svg> 
+            <span class="article-wordcount">
+                1798 字
+            </span>
+        </div>
+    </footer>
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="yolo视觉学习">YOLO视觉学习
+</h1><blockquote class="alert alert-note">
+    <p>↪︎<strong>初步接触深度学习视觉检测，主要为学习YOLOV8为初步入门使用教程学习</strong>🫣</p></blockquote>
+<h2 id="1-环境配置">1. 环境配置
+</h2><p>(发现基本上的学习历程大部分都卡在了环境搭建😭，所以我尽量把环境搭建的细节和流程写详细一点！)<br></p>
+<h3 id="11-安装miniconda">1.1 安装miniconda
+</h3><p>安装miniconda版本为py38windos版本:<br>
+🔹https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/<br>
+【主要用于虚拟环境的配置，在python开发中都可以用的到】<br></p>
+<h3 id="12-虚拟环境搭建">1.2 虚拟环境搭建
+</h3><ul>
+<li>(1) 在conda终端中新建一个名为yolov8的虚拟环境，指定python版本为3.8：conda create -n yolov8 python=3.8【指定python版本位3.8版本】<br></li>
+<li>(2) 激活/切换到yolov8虚拟环境：conda activate yolov8（虚拟环境名称）<br></li>
+</ul>
+<h3 id="13-镜像源配置主要是方便本地下载">1.3 镜像源配置(主要是方便本地下载)
+</h3><p>pypi配置国内清华镜像：（替换为长期，就是将你以后的pip安装下载的通道改为从国内的镜像来下载，大部分的库或者安装都是在国外网站，下载比较慢，所以替换镜像为清华源，还有其他的类似的阿里等等）<br>
+🔹https://mirrors.tuna.tsinghua.edu.cn/help/pypi/<br></p>
+<h3 id="14-pytorch环境安装">1.4 pytorch环境安装
+</h3><p>pytorch环境安装：https://pytorch.org/（注意选择合适版本）<br></p>
+<p><img src="/p/yolo/2.png"
+	width="1165"
+	height="659"
+	srcset="/p/yolo/2_hu_2882edc037d6ea0a.png 480w, /p/yolo/2_hu_adc1fa1e000d1491.png 1024w"
+	loading="lazy"
+	
+		alt="pytorch版本选择"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="176"
+		data-flex-basis="424px"
+	
+></p>
+<h3 id="15安装ultralyticsyolov8">1.5安装ultralytics（yolov8）：
+</h3><ul>
+<li>(1) 安装zip总文件：<br>
+🔹https://github.com/ultralytics/ultralytics<br></li>
+<li>(2) 终端进入文件夹\ultralytics-main输入命令：pip install -e .  【后面的点要带！】<br>
+【<a class="link" href="https://www.bilibili.com/video/BV1aSKJzGEjh?spm_id_from=333.788.videopod.episodes&amp;vd_source=b0f5272da83bbf0fd5569aa17bceb192"  target="_blank" rel="noopener"
+    >详细介绍还是不够的话可以参考此b站视频🤗🤗</a>】</li>
+<li>(3) ultralytics官方文档:<br>
+🔹https://docs.ultralytics.com/zh/</li>
+</ul>
+<h2 id="2-模型预测及训练使用">2. 模型预测及训练使用
+</h2><h3 id="21-标注图片环境下载">2.1 标注图片环境下载
+</h3><ul>
+<li>(1) 下载labelimg：pip install labelimg</li>
+<li>(2) 启动labelimg：labelimg</li>
+</ul>
+<h3 id="22-训练模型">2.2 训练模型
+</h3><ul>
+<li>(1) 标注完文件将文件创建好：
+<ul>
+<li>Train-项目名
+<ul>
+<li>images
+<ul>
+<li>train:（存放所有照片）</li>
+<li>val:（存放验证集照片）</li>
+</ul>
+</li>
+<li>labels
+<ul>
+<li>train:（存放所有标注后的.txt）</li>
+<li>val:（存放验证标志.txt）</li>
+</ul>
+</li>
+<li>classes.txt（标注种类文件）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(2) 创建好放到<strong>Train-项目名</strong>文件将文件放到datasets文件夹内</li>
+<li>(3) 写好相应的yaml文件之后开始到tarin.py文件填好相应的文件路径和名称，最后开始训练
+<ul>
+<li>配置.yaml文件示例
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">Train-项目名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">train</span><span class="p">:</span><span class="w"> </span><span class="l">images/train</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">val</span><span class="p">:</span><span class="w"> </span><span class="l">images/val</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="c">#可选项</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">names</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">0</span><span class="p">:</span><span class="w"> </span><span class="l">标注时第一个标注对象名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">1</span><span class="p">:</span><span class="w"> </span><span class="l">标注时第二个标注对象名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">nc</span><span class="p">:</span><span class="w"> </span><span class="l">对象种类个数 </span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>train.py文件示例
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">ultralytics</span> <span class="kn">import</span> <span class="n">YOLO</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="s1">&#39;yolov8n.pt&#39;</span><span class="p">)</span> <span class="c1">#参考预测模型文件，如果是自己的可以放自己last.pt文件继续训练</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;配置.yaml&#39;</span><span class="p">,</span><span class="n">workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">batch</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span><span class="c1">#后面参数可自行根据训练硬件配置选择</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;训练完成！&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>(4) 训练完最终模型文件存放在runs/detect/trainxx/weights/xxx.pt</li>
+</ul>
+<h3 id="23-跑训练模型效果">2.3 跑训练模型效果
+</h3><p>简单使用示例代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">ultralytics</span> <span class="kn">import</span> <span class="n">YOLO</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">yolo</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="s2">&#34;./best.pt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 小目标检测专用配置</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span><span class="n">yolo</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">source</span><span class="o">=</span><span class="s2">&#34;./detect_Text/Player.mp4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conf</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>              <span class="c1"># 低置信度</span>
+</span></span><span class="line"><span class="cl">    <span class="n">imgsz</span><span class="o">=</span><span class="mi">1280</span><span class="p">,</span>             <span class="c1"># 大尺寸输入</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iou</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>                <span class="c1"># 较低的IoU阈值</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_det</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>            <span class="c1"># 增加最大检测数量</span>
+</span></span><span class="line"><span class="cl">    <span class="n">agnostic_nms</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>     <span class="c1"># 类相关的NMS</span>
+</span></span><span class="line"><span class="cl">    <span class="n">augment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>           <span class="c1"># 测试时增强</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># for i in result:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     print(i.boxes.xywh.cpu().numpy())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-最终训练效果展示">3. 最终训练效果展示
+</h2><p>下面是我训练YOLOv8模型后的检测效果照片：(用的是我朋友之前在人民公园跟大爷一起踢毽子的视频，此处肖像权省略略略略😝😝😝，视频太大传不上去，又不想上传到地方托管，所以只取了其中一张照片)<br>
+<img src="/p/yolo/3.png"
+	width="2230"
+	height="1125"
+	srcset="/p/yolo/3_hu_caaa528050a05f82.png 480w, /p/yolo/3_hu_43a75e6ff29f78bb.png 1024w"
+	loading="lazy"
+	
+		alt="第一版自主训练跑效果图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="475px"
+	
+></p>
+<p>视频：<del>YOLOv8模型在自定义数据集上的检测效果,数据集我训练的比较少,最终的视频效果一般,后面需要的话还是增大数据训练集</del></p>
+<h2 id="4-学习心得总结">4. 学习心得总结
+</h2><blockquote class="alert alert-note">
+    <p>🔅初步整个学习历程下来还是在配置训练环境，主要是学习到windos系统下的虚拟环境的配置，还有yolov8主要训练流程还有打标工具labelimg下载等等。详细的系统深度学习还有其他的标注工具可以<a class="link" href="https://www.bilibili.com/video/BV19Z31z8ENH/?spm_id_from=333.1387.favlist.content.click&amp;vd_source=b0f5272da83bbf0fd5569aa17bceb192"  target="_blank" rel="noopener"
+    >参考小土堆up</a>。后面还有更深度的具体如何实现深度学习的方法，卷积等等算法实现可以为后续深入地学习了解。还有后面如何将YOLO视觉具体应用到类似ROS上，如何视觉和底盘或者机械臂等协同工作的流程还要继续学习研究！本篇只作为初步入门学习使用YOLO😊.</p></blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89/">机器视觉</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>不知江月待何人,但见长江送流水.</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="prominsegsj/prominsegsj.github.io"
+    data-repo-id="R_kgDOPjrIrg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOPjrIrs4Cuj0b"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    
+<div class="reading-progress">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+</div>
+
+<footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 小郭不背锅
+    </section>
+    
+    
+    <section class="powerby" style="margin-top: 0.5rem;">
+        <div id="site-runtime" style="font-size: 1.15em; color: #290656;">
+            本站已安全运行 <span id="runtime-days">0</span> 天 <span id="runtime-hours">0</span> 时 <span id="runtime-mins">0</span> 分 <span id="runtime-secs">0</span> 秒
+        </div>
+    </section>
+
+    <script>
+        
+        const startDate = new Date('2025-08-25T12:00:00'); 
+
+        function updateRuntime() {
+            const now = new Date();
+            const diff = now - startDate; 
+
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            
+            document.getElementById('runtime-days').innerText = days;
+            document.getElementById('runtime-hours').innerText = hours;
+            document.getElementById('runtime-mins').innerText = minutes;
+            document.getElementById('runtime-secs').innerText = seconds;
+        }
+
+        
+        updateRuntime();
+        
+        setInterval(updateRuntime, 1000);
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.getElementById('readingProgress');
+            
+            if (progressBar) {
+                
+                window.addEventListener('scroll', function() {
+                    const windowHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    const progress = (scrollTop / documentHeight) * 100;
+                    progressBar.style.width = progress + '%';
+                });
+                
+                
+                progressBar.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const clickPosition = e.clientX - rect.left;
+                    const percentage = clickPosition / rect.width;
+                    
+                    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const targetPosition = documentHeight * percentage;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+    
+    <style>
+     
+    .reading-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        backdrop-filter: blur(5px);
+    }
+
+    .reading-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #ff6b6b, #ff8e53, #fea82f, #4ecdc4, #45b7d1);
+        width: 0%;
+        transition: width 0.1s ease;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .reading-progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.4), 
+            transparent);
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+
+     
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #ff6b6b, #4ecdc4);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #ff5252, #26a69a);
+    }
+    </style>
+    
+    
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+	server="netease"
+	type="playlist"
+	id="14194243775"
+    list-max-height="100px"
+    fixed="true"
+    mini="true">
+</meting-js>
+
+<script>
+    
+    const cssPath = 'https:\/\/prominsegsj.github.io\/waifu\/waifu.css'
+    const tipsJsonPath = 'https:\/\/prominsegsj.github.io\/waifu\/waifu-tips.json'
+    const live2dJsPath = 'https:\/\/prominsegsj.github.io\/waifu\/live2d.min.js'
+    
+    const live2d_path = "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/";
+
+
+    
+    function loadExternalResource(url, type) {
+        return new Promise((resolve, reject) => {
+            let tag;
+            if (type === "css") {
+                tag = document.createElement("link");
+                tag.rel = "stylesheet";
+                tag.href = url;
+            }
+            else if (type === "js") {
+                tag = document.createElement("script");
+                tag.src = url;
+            }
+            if (tag) {
+                tag.onload = () => resolve(url);
+                tag.onerror = () => reject(url);
+                document.head.appendChild(tag);
+            }
+        });
+    }
+
+    
+    if (screen.width >= 768) {
+        Promise.all([
+            loadExternalResource(cssPath, "css"),
+            loadExternalResource(live2dJsPath, "js"),
+            loadExternalResource(live2d_path + "waifu-tips.js", "js")
+        ]).then(() => {
+            
+            initWidget({
+                waifuPath: tipsJsonPath,
+                cdnPath: "https://cdn.jsdelivr.net/gh/prominsegsj/static-resource@v1.0.0",
+                tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
+            });
+            initWaifuMouseEvent();
+        });
+    }
+   
+    function initWaifuMouseEvent() {
+        const waifu = document.getElementById("waifu");
+        let isDown = false;
+        let waifuLeft;
+        let mouseLeft;
+        let waifuTop;
+        let mouseTop;
+        
+        waifu.onmousedown = function (e) {
+            isDown = true;
+            
+            waifuLeft = waifu.offsetLeft;
+            mouseLeft = e.clientX;
+            
+            waifuTop = waifu.offsetTop;
+            mouseTop = e.clientY;
+        }
+        
+        window.onmousemove = function (e) {
+            if (!isDown) {
+                return;
+            }
+            
+            let currentLeft = waifuLeft + (e.clientX - mouseLeft);
+            if (currentLeft < 0) {
+                currentLeft = 0;
+            } else if (currentLeft > window.innerWidth - 300) {
+                currentLeft = window.innerWidth - 300;
+            }
+            waifu.style.left = currentLeft  + "px";
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+        
+        window.onmouseup = function (e) {
+            isDown = false;
+        }
+    }  
+</script>
+
+<style>
+    @font-face {
+      font-family: 'ShinRetroMaruGothic';
+      src: url('https://prominsegsj.github.io/font/ShinRetroMaruGothic-Medium.ttf') format('truetype');
+    }
+  
+    :root {
+      --base-font-family: 'ShinRetroMaruGothic';
+      --code-font-family: 'ShinRetroMaruGothic';
+    }
+</style>
+  
+<style>
+
+body,
+html,
+.article-content img {
+  cursor: url(/mouse/normal1.png),
+  auto !important;
+}
+
+a:hover,
+button:hover,
+.copyCodeButton:hover,
+#dark-mode-toggle {
+  cursor: url(/mouse/click_hu.png),
+  auto;
+}
+
+input:hover,
+.site-description,
+.article-subtitle,
+.article-content span,
+.article-content li,
+.article-content p {
+  cursor: url(/mouse/text_hu.png),
+  auto;
+}
+
+</style>
+
+<style>
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    function initTocHide() {
+        
+        let toc = document.querySelector(".widget--toc");
+        if (!toc) {
+            return;
+        }
+        
+        window.addEventListener('scroll', function() {
+            
+            let openUl = document.querySelectorAll(".open");
+            if (openUl.length > 0) {
+              openUl.forEach((ul) => {
+                ul.classList.remove("open")
+              })
+            }
+            
+            let currentLi = document.querySelector(".active-class");
+            if (!currentLi) {
+                return
+            }
+            
+            if (currentLi.children.length > 1) {
+                currentLi.children[1].classList.add("open")
+            }
+            
+            let ul = currentLi.parentElement;
+            do {
+                ul.classList.add("open");
+                ul = ul.parentElement.parentElement
+            } while (ul !== undefined && (ul.localName === 'ul' || ul.localName === 'ol'))
+        });
+    }
+    initTocHide()
+</script>
+
+<style>
+    #backTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        z-index: 99;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        background-image: url('https://prominsegsj.github.io/icons/backTop.svg');
+    }
+</style>
+
+<script>
+    
+
+    function initScrollTop() {
+        let rightSideBar = document.querySelector(".right-sidebar");
+        if (!rightSideBar) {
+            return;
+        }
+        
+        let btn = document.createElement("div");
+        btn.id = "backTopBtn";
+        btn.onclick = backToTop
+        rightSideBar.appendChild(btn)
+        
+        window.onscroll = function() {
+            
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+    }
+
+    
+
+    function backToTop(){
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
+    initScrollTop();
+</script>
+
+<style>
+    .highlight {
+         
+        max-height: 400px;
+        overflow: hidden;
+    }
+
+    .code-show {
+        max-height: none !important;
+    }
+
+    .code-more-box {
+        width: 100%;
+        padding-top: 78px;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .code-more-btn {
+        display: block;
+        margin: auto;
+        width: 44px;
+        height: 22px;
+        background: #f0f0f5;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        padding-top: 6px;
+        cursor: pointer;
+    }
+
+    .code-more-img {
+        cursor: pointer !important;
+        display: block;
+        margin: auto;
+        width: 22px;
+        height: 16px;
+    }
+</style>
+
+<script>
+  function initCodeMoreBox() {
+    let codeBlocks = document.querySelectorAll(".highlight");
+    if (!codeBlocks) {
+      return;
+    }
+    codeBlocks.forEach(codeBlock => {
+      
+      if (codeBlock.scrollHeight <= codeBlock.clientHeight) {
+        return;
+      }
+      
+      
+      let codeMoreBox = document.createElement('div');
+      codeMoreBox.classList.add('code-more-box');
+      
+      let codeMoreBtn = document.createElement('span');
+      codeMoreBtn.classList.add('code-more-btn');
+      codeMoreBtn.addEventListener('click', () => {
+        codeBlock.classList.add('code-show');
+        codeMoreBox.style.display = 'none';
+        
+        window.dispatchEvent(new Event('resize'))
+      })
+      
+      let img = document.createElement('img');
+      img.classList.add('code-more-img');
+      img.src = 'https:\/\/prominsegsj.github.io\/icons\/codeMore.png'
+      
+      codeMoreBtn.appendChild(img);
+      codeMoreBox.appendChild(codeMoreBtn);
+      codeBlock.appendChild(codeMoreBox)
+    })
+  }
+  
+  initCodeMoreBox();
+</script>
+
+
+
+
+
+  
+  
+  
+  
+
+<script defer src="https://events.vercount.one/js"></script>
+  
+
+
+
+<div id="background-layer">
+    
+    <div id="particles-js"></div>
+  
+    
+    <div id="jsi-flying-fish-container"></div>
+  </div>
+  
+  
+  <script src="/background/particles.min.js"></script>
+  <script src="/fish/renderer.js"></script>
+  <script>
+    particlesJS.load('particles-js', '/background/particlesjs-config.json', function() {
+      console.log('particles.js loaded - callback');
+    });
+  </script>
+  
+  
+  <style>
+     
+    #background-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;      
+      overflow: hidden;
+      pointer-events: none;
+    }
+  
+     
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;       
+    }
+  
+     
+    #jsi-flying-fish-container {
+      width: 100%;
+      height: 200px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;       
+      opacity: 0.37;
+    }
+  </style>
+  
+
+
+
+    </body>
+</html>
+
+
+

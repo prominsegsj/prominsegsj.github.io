@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Categories on 小郭不背锅</title>
+        <link>https://prominsegsj.github.io/categories/</link>
+        <description>Recent content in Categories on 小郭不背锅</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>小郭不背锅</copyright>
+        <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://prominsegsj.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>CMD</title>
+        <link>https://prominsegsj.github.io/categories/cmd/</link>
+        <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/categories/cmd/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Git</title>
+        <link>https://prominsegsj.github.io/categories/git/</link>
+        <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/categories/git/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>笔记</title>
+        <link>https://prominsegsj.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/categories/%E7%AC%94%E8%AE%B0/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>YOLO</title>
+        <link>https://prominsegsj.github.io/categories/yolo/</link>
+        <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/categories/yolo/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>学习</title>
+        <link>https://prominsegsj.github.io/categories/%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/categories/%E5%AD%A6%E4%B9%A0/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Hugo</title>
+        <link>https://prominsegsj.github.io/categories/hugo/</link>
+        <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/categories/hugo/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>博客</title>
+        <link>https://prominsegsj.github.io/categories/%E5%8D%9A%E5%AE%A2/</link>
+        <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/categories/%E5%8D%9A%E5%AE%A2/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Test</title>
+        <link>https://prominsegsj.github.io/categories/test/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/categories/test/</guid>
+        <description>&lt;img src="https://prominsegsj.github.io/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

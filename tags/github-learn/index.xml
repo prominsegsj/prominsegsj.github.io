@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Github-Learn on 小郭不背锅</title>
+        <link>https://prominsegsj.github.io/tags/github-learn/</link>
+        <description>Recent content in Github-Learn on 小郭不背锅</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>小郭不背锅</copyright>
+        <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://prominsegsj.github.io/tags/github-learn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【GitHub】基础学习</title>
+        <link>https://prominsegsj.github.io/p/git_learn/</link>
+        <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/p/git_learn/</guid>
+        <description>&lt;img src="https://prominsegsj.github.io/p/git_learn/1.png" alt="Featured image of post 【GitHub】基础学习" /&gt;&lt;h1 id=&#34;github的git使用学习笔记&#34;&gt;Github的Git使用学习笔记
+&lt;/h1&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;&lt;strong&gt;小锅&lt;/strong&gt;的Git使用笔记记录🫠(与“【Windos系统】CMD学习使用”笔记一同挪过来的🦊)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;1-常用基础&#34;&gt;1. 常用基础
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Git初始化：git init（需要再对应文件目录下初始化）&lt;/li&gt;
+&lt;li&gt;查看Git仓库状态：git status&lt;/li&gt;
+&lt;li&gt;将文件放到中转存储区：git add ＋文件名(git add .   (意思是将当前文件中的所有文件添加到暂存区))&lt;/li&gt;
+&lt;li&gt;提交到仓库：git commit（只会提交暂存区的文件也就是标绿的文件，红色文件是还未被放到暂存区的文件不会被提交）&lt;/li&gt;
+&lt;li&gt;改文件名：mv＋要改的文件＋要改为的名字&lt;/li&gt;
+&lt;li&gt;批量将文件放到暂存区：add *.文件格式&lt;/li&gt;
+&lt;li&gt;查看提交仓库记录：git log&lt;/li&gt;
+&lt;li&gt;回退版本命令：git reset &amp;ndash;三种模式&lt;/li&gt;
+&lt;li&gt;查看当前分支情况：git branch&lt;/li&gt;
+&lt;li&gt;新建分支：git branch 分支名&lt;/li&gt;
+&lt;li&gt;切换到其他分支：git checkout 分支名&lt;/li&gt;
+&lt;li&gt;新建加切换一步到位：git checkout -b 分支名&lt;/li&gt;
+&lt;li&gt;合并到主分支上：git merge 需要合并的分支名&lt;/li&gt;
+&lt;li&gt;删除分支：git branch -d 分支名（-D则为强制删除）&lt;/li&gt;
+&lt;li&gt;给当前开发代码状态加上标签：git tag 标签名（例如：V1.0）&lt;/li&gt;
+&lt;li&gt;切换到想要切换的标签状态：git checkout 标签名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-提交并且上传到github仓库上大致流程&#34;&gt;2. 提交并且上传到github仓库上大致流程
+&lt;/h2&gt;&lt;h3 id=&#34;21-首次提交大致流程&#34;&gt;2.1 首次提交大致流程
+&lt;/h3&gt;&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
+    &lt;p&gt;↘️ 1.在需要提交文件目录下打开git brash&lt;br&gt;
+↘️ 2.git init（初始化文件夹为git管理）&lt;br&gt;
+↘️ 3.git add 文件/.（将需要提交到仓库的文件放到暂存区）&lt;br&gt;
+↘️ 4.git commit -m &amp;ldquo;(此次提交记录的备注)&amp;quot;&lt;br&gt;
+↘️ 5.git branch（检查当前所处分支）&lt;br&gt;
+↘️ 6.git remote add origin 仓库ssh地址（创建一个名为origin的远程仓库并且与github上的指定仓库连接）&lt;br&gt;
+↘️ 7.git push -u origin main （最后将当前main分支的已commit的部分push到远程仓库origin上即上传到github上）&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;22-疑难问题&#34;&gt;2.2 疑难问题
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;问题1:后续第二次等的提交注意
+&lt;ul&gt;
+&lt;li&gt;重点在后续版本的提交时或者多人开发时应该先：git pull origin main （在提交之前习惯性需要先更新本地仓库跟远程仓库同步，记住是在commit之前同步，不然会报错）即使简单的遇到历史提交不匹配问题，也可以直接执行：git pull 进行合并更新&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;问题2:删除空的 origin（可选）
+&lt;ul&gt;
+&lt;li&gt;(例). git remote remove origin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;问题3:强制推送：
+&lt;ul&gt;
+&lt;li&gt;(例). git push -f origin main&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3-心得总结&#34;&gt;3. 心得总结
+&lt;/h2&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;此篇也是在我之前的那篇TXT文件里面藏着的原始人笔记，我想给他隔开来单独作为Git学习的笔记记录。Github作为全球最大的开源平台还是很多地方可以学习，有海量的全球优秀的开源作品，不管是自己学习用还是做项目都应该学习如何使用和管理自己的项目。开源的思想我认为也是非常棒的觉悟思想(听说好像要整改被微软收购，后面风向会不会变也不知道，但是感觉大方向的开源核心应该是不会变的呢🧐)。作为向更多更优秀的人学习的一项必备技能，希望大家(重点Q自己)要好好学习，要努力提升自己！😎&lt;/p&gt;&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
