@@ -3,13 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://prominsegsj.github.io/</loc>
-    <lastmod>2025-10-24T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://prominsegsj.github.io/categories/</loc>
-    <lastmod>2025-10-24T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://prominsegsj.github.io/post/</loc>
-    <lastmod>2025-10-24T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://prominsegsj.github.io/p/stm32_learn/</loc>
+    <lastmod>2025-11-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://prominsegsj.github.io/categories/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2025-11-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://prominsegsj.github.io/categories/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
+    <lastmod>2025-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://prominsegsj.github.io/tags/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
@@ -51,9 +60,6 @@
     <lastmod>2025-09-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://prominsegsj.github.io/tags/github-learn/</loc>
-    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://prominsegsj.github.io/categories/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2025-09-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://prominsegsj.github.io/p/yolo/</loc>

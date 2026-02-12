@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>单片机 on 小郭不背锅</title>
+        <link>https://prominsegsj.github.io/categories/%E5%8D%95%E7%89%87%E6%9C%BA/</link>
+        <description>Recent content in 单片机 on 小郭不背锅</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>小郭不背锅</copyright>
+        <lastBuildDate>Sun, 02 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://prominsegsj.github.io/categories/%E5%8D%95%E7%89%87%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>STM32学习笔记</title>
+        <link>https://prominsegsj.github.io/p/stm32_learn/</link>
+        <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://prominsegsj.github.io/p/stm32_learn/</guid>
+        <description>&lt;img src="https://prominsegsj.github.io/p/stm32_learn/1.png" alt="Featured image of post STM32学习笔记" /&gt;&lt;h2 id=&#34;新建工程project&#34;&gt;新建工程Project
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;1.新建文件夹目录如下：
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/2.png&#34;
+	width=&#34;1152&#34;
+	height=&#34;379&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/2_hu_2eec6490333df3c6.png 480w, https://prominsegsj.github.io/p/stm32_learn/2_hu_a0d76b3672525946.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;新建工程文件夹目录&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;303&#34;
+		data-flex-basis=&#34;729px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;1.user存放main等文件&lt;/li&gt;
+&lt;li&gt;2.project存放keil工程文件&lt;/li&gt;
+&lt;li&gt;3.start存放启动文件&lt;/li&gt;
+&lt;li&gt;4.library存放32需要的外设库&lt;/li&gt;
+&lt;li&gt;5.freertos存放freertos系统的文件内容&lt;/li&gt;
+&lt;li&gt;6.hardware存放驱动的串口，iic等底层协议的基础部分&lt;/li&gt;
+&lt;li&gt;7.bsp存放封装的外设模块代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;2.随后打开keil软件新建project选好单片机型号选择工程存放到新建的project文件夹内&lt;/li&gt;
+&lt;li&gt;3.将start文件和library文件夹需要的文件复制好，目录框架内容：(其中的freertos文件内容需要重新看一下freertos的系统移植，其实也是找到对应文件夹中的文件内容添加好既可)
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/3.png&#34;
+	width=&#34;1112&#34;
+	height=&#34;648&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/3_hu_1a8e1b1dbc1b0573.png 480w, https://prominsegsj.github.io/p/stm32_learn/3_hu_379cc944631753ca.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;start文件&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;411px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/4.png&#34;
+	width=&#34;1291&#34;
+	height=&#34;1128&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/4_hu_b3170858efa8dff.png 480w, https://prominsegsj.github.io/p/stm32_learn/4_hu_8819aa4dd4964de0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;library文件&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;114&#34;
+		data-flex-basis=&#34;274px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/5.png&#34;
+	width=&#34;1150&#34;
+	height=&#34;279&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/5_hu_5c8ed8bd7cbd0f15.png 480w, https://prominsegsj.github.io/p/stm32_learn/5_hu_e76a2e17fdfeb65f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;freertos文件&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;412&#34;
+		data-flex-basis=&#34;989px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/6.png&#34;
+	width=&#34;1144&#34;
+	height=&#34;356&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/6_hu_4a64952f5bc1c795.png 480w, https://prominsegsj.github.io/p/stm32_learn/6_hu_54bd048a14e1c1b7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;user文件&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;321&#34;
+		data-flex-basis=&#34;771px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;4.将上述文件添加好之后既可到kei中打开此工程配置左边目录栏，将文件夹中的文件内容添加进来，但是要注意start文件中需要添加的是你的开发板对应型号的ls，md，hd，只能选一个。
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/7.png&#34;
+	width=&#34;1524&#34;
+	height=&#34;715&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/7_hu_4d143bc1771244aa.png 480w, https://prominsegsj.github.io/p/stm32_learn/7_hu_dcc12456497481f4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;左边栏框架&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;213&#34;
+		data-flex-basis=&#34;511px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;5.之后既可在outpu toption的c++选项中添加编译查找目录文件，以及添加宏定义和指定目标启动文件的宏定义(注意freertos的目录里面有子目录都要分别添加进去)
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/8.png&#34;
+	width=&#34;1684&#34;
+	height=&#34;947&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/8_hu_2d1c85cfa2ce62f8.png 480w, https://prominsegsj.github.io/p/stm32_learn/8_hu_22e74c0bc76d54fd.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;output选项配置&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/9.png&#34;
+	width=&#34;968&#34;
+	height=&#34;727&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/9_hu_e01ad4324d0b17b4.png 480w, https://prominsegsj.github.io/p/stm32_learn/9_hu_3bd40c50feca5d58.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;注意freertos的路径&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;6.还有一个编译选项在outpu toption的target选项中选择5，示例：
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;https://prominsegsj.github.io/p/stm32_learn/10.png&#34;
+	width=&#34;950&#34;
+	height=&#34;720&#34;
+	srcset=&#34;https://prominsegsj.github.io/p/stm32_learn/10_hu_f6a1ea2887403211.png 480w, https://prominsegsj.github.io/p/stm32_learn/10_hu_f7ba230372bef71d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;编译选择示例&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;316px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;7.最后编译一下0报错既可正常使用工程了！&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
