@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>CMD终端 on 小郭不背锅</title>
+        <link>http://localhost:1313/tags/cmd%E7%BB%88%E7%AB%AF/</link>
+        <description>Recent content in CMD终端 on 小郭不背锅</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>小郭不背锅</copyright>
+        <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/cmd%E7%BB%88%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【Windos系统】CMD学习使用</title>
+        <link>http://localhost:1313/p/windos_cmd_learn/</link>
+        <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/windos_cmd_learn/</guid>
+        <description>&lt;img src="http://localhost:1313/p/windos_cmd_learn/3.jpg" alt="Featured image of post 【Windos系统】CMD学习使用" /&gt;&lt;h1 id=&#34;windos系统下的cmd&#34;&gt;Windos系统下的cmd
+&lt;/h1&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;&lt;strong&gt;小锅&lt;/strong&gt;的windos终端使用记录😇(扩展后续了解学习使用PowerShell)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;1-开启普通终端cmd&#34;&gt;1. 开启普通终端CMD
+&lt;/h2&gt;&lt;p&gt;win＋R 键然后输入cmd指令开启终端窗口&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-常用的终端操作&#34;&gt;2. 常用的终端操作
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;删除：
+&lt;ul&gt;
+&lt;li&gt;(1). 删除文件夹： rmdir＋文件夹名（注意和del区分） &lt;em&gt;或者&lt;/em&gt; rd 文件名 /s（反馈选择是否删除非空文件） &lt;em&gt;或者&lt;/em&gt; rd 文件名 /q （不会反馈任何信息，安静删除）&lt;/li&gt;
+&lt;li&gt;(2). 删除文件：del＋文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;获取时间
+&lt;ul&gt;
+&lt;li&gt;(1). 打印当前日期：date&lt;/li&gt;
+&lt;li&gt;(2). 打印当前具体时间：time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;复制·剪切
+&lt;ul&gt;
+&lt;li&gt;(1). 复制文件夹：copy  要复制的文件  对应的文件夹（只能复制文件，不能复制文件夹xcopy）&lt;/li&gt;
+&lt;li&gt;(2). 剪切文件夹：move 要剪切的文件夹 到哪个文件夹的位置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;回声操作： echo&lt;/li&gt;
+&lt;li&gt;打印文件夹内容： dir&lt;/li&gt;
+&lt;li&gt;转换文件夹位置：文件夹名:  (此处后面要的冒号要记得加)&lt;/li&gt;
+&lt;li&gt;跳转文件夹位置： cd&lt;/li&gt;
+&lt;li&gt;打开文件夹图形界面： start&lt;/li&gt;
+&lt;li&gt;创建文件夹： mkdir or md 文件名&lt;/li&gt;
+&lt;li&gt;访问从不同文件夹的东西：dir 起始文件夹\要打印的文件夹&lt;/li&gt;
+&lt;li&gt;重命名：ren 原文件名 重命名后的文件名&lt;/li&gt;
+&lt;li&gt;清屏终端之前的操作：cls&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3-小开关&#34;&gt;3. 小开关
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;显示指令的功能以及如何使用对应指令：指令＋/？&lt;/li&gt;
+&lt;li&gt;显示所有文件夹包括隐藏文件：dir＋/a&lt;/li&gt;
+&lt;li&gt;循环往复的小开关：指令＋/s＋文件或者其他操作&lt;/li&gt;
+&lt;li&gt;改变变量：
+&lt;ul&gt;
+&lt;li&gt;(例) path＝“path”；文件路径&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定向输出：需要输出的内容＋＞要输出的文件 (＞＞是删除内容的输出.如果定向输出到nul处则不会有任何显示，意思是倒入垃圾桶)&lt;/li&gt;
+&lt;li&gt;打开文本文件：type＋文件&lt;/li&gt;
+&lt;li&gt;定向输入：
+&lt;ul&gt;
+&lt;li&gt;(例) more＋＜加文件（按页面内容吗一页一页显示）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;接力符：|
+&lt;ul&gt;
+&lt;li&gt;(例) tasklist | more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;打开计算器：calc&lt;/li&gt;
+&lt;li&gt;了解所有进程：tasklist&lt;/li&gt;
+&lt;li&gt;结束某个进程：taskkill /f /pid 序号&lt;/li&gt;
+&lt;li&gt;打开浏览器：start msedge&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-创建txt文本文件&#34;&gt;4. 创建txt文本文件
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;(1).echo. &amp;gt;文件名.txt&lt;/li&gt;
+&lt;li&gt;(2).copy nul 文件名.txt&lt;/li&gt;
+&lt;li&gt;(3).type nul &amp;gt; 文件名.txt（或者建其他文件格式都是这样）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5-进程管理命令&#34;&gt;5. 进程管理命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;tasklist #显示计算机上运行的进程列表。&lt;/li&gt;
+&lt;li&gt;tasklist /V #显示详细任务信息。&lt;/li&gt;
+&lt;li&gt;taskkill #按照进程ID（PID）或映像名称终止任务。&lt;/li&gt;
+&lt;li&gt;taskkill /PID 1024 #停止PID=1024 的进程。&lt;/li&gt;
+&lt;li&gt;taskkill /IM capiws.exe #停止名称为capiws的进程。&lt;/li&gt;
+&lt;li&gt;taskkill /F /PID 1024 #强制终止进程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;6-用户管理命令&#34;&gt;6. 用户管理命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;net user #windows账户管理工具。&lt;/li&gt;
+&lt;li&gt;net user guest #列出guest账户的信息。&lt;/li&gt;
+&lt;li&gt;net user hacker 123456 /add #添加账户。&lt;/li&gt;
+&lt;li&gt;net user hacker 888888 #修改密码。&lt;/li&gt;
+&lt;li&gt;net user hacker /active:yes|no #启用|禁用账户。&lt;/li&gt;
+&lt;li&gt;net user hacker /delete #删除账户。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;7-网络管理命令&#34;&gt;7. 网络管理命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;ipconfig #显示网络配置信息。&lt;/li&gt;
+&lt;li&gt;ipconfig /all #显示完整配置信息。&lt;/li&gt;
+&lt;li&gt;ipconfig /displaydns #显示DNS缓存。&lt;/li&gt;
+&lt;li&gt;ipconfig /flushdns #清理DNS缓存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;番外tip篇&#34;&gt;番外Tip篇
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;ollama跑8b模型：(好像是DS热门那会儿我试了一下本地部署DS，没办法电脑性能不行，带不动多好的模型，所以只能玩一玩这个8b的超笨模型😂，相关教程可以b站搜索：ollama本地部署DS，我就不补充配置了。权当做笔记记录使用了😜)
+&lt;ul&gt;
+&lt;li&gt;(例). ollama run deepseek-r1:8b&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;8-心得总结&#34;&gt;8. 心得总结
+&lt;/h2&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;windos的cmd终端的使用开发还是仅限于上述的基础部分的运用，还有很多功能和使用没有&amp;quot;用到&amp;quot;，等后续有新的使用技巧我再更新做笔记上去(ps:实则是因为自己太懒🙂‍↕️🙂‍↕️，只能算一个学习笔记记录吧，把我的那篇原始人的TXT笔记挪过来啦😅)！!&lt;/p&gt;&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

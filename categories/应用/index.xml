@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>应用 on 小郭不背锅</title>
+        <link>http://localhost:1313/categories/%E5%BA%94%E7%94%A8/</link>
+        <description>Recent content in 应用 on 小郭不背锅</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>小郭不背锅</copyright>
+        <lastBuildDate>Sun, 27 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%BA%94%E7%94%A8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux深入学习-驱动、应用等</title>
+        <link>http://localhost:1313/p/linux-driver-learn/</link>
+        <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/linux-driver-learn/</guid>
+        <description>&lt;img src="http://localhost:1313/p/linux-driver-learn/1.jpg" alt="Featured image of post Linux深入学习-驱动、应用等" /&gt;&lt;h1 id=&#34;1-linux初识&#34;&gt;1. Linux初识
+&lt;/h1&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;自26年5月份实习开始至今，接触Linux文件系统框架、内核架构、应用层（含网络、交叉编译、操作系统等）、驱动等，让我确定以后的工作方向是内核、驱动、应用等。此篇用来记录整个笔记😊&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;11-linux介绍&#34;&gt;1.1 Linux介绍
+&lt;/h2&gt;&lt;h2 id=&#34;12-linux系统架构&#34;&gt;1.2 Linux系统架构
+&lt;/h2&gt;&lt;h3 id=&#34;121-u-boot&#34;&gt;1.2.1 U-Boot
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;介绍：主要用于嵌入式系统引导加载程序，启动操作系统内核。分为boot+loader步骤， boot阶段启动系统，初始化硬件设备，建立内存空间映射图，将系统的软硬件带到一个合适的状态， loader阶段将操作系统内核文件加载至内存，之后跳转到内核所在地址运行。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;122-内核kernel&#34;&gt;1.2.2 内核(kernel)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;介绍：软件通过控制计算机的硬件类似外围设备、内存、处理器、硬盘等其他电子设备的操作系统，主要包括：文件管理子系统、进程管理子系统、内存管理子系统、网络子系统、设备子系统等。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/3.png&#34;
+	width=&#34;698&#34;
+	height=&#34;652&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/3_hu_566b4a1e7d703f53.png 480w, http://localhost:1313/p/linux-driver-learn/3_hu_c00d21d0f4f01dab.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;框架&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;107&#34;
+		data-flex-basis=&#34;256px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;123-设备树&#34;&gt;1.2.3 设备树
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;介绍：一种描述硬件的数据结构，包含设备的描述信息的文件就是device tree。主要包括设备树源码（DTS），设备树源码编译工具（DTC），二进制格式设备树（DTB）。最终能够被内核系统识别和使用的文件是DTB，所以需要经历以下流程最后在bootloader启动内核时将dtb去读出来给内核启动使用。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/4.png&#34;
+	width=&#34;698&#34;
+	height=&#34;132&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/4_hu_351b080fbf6e8cd4.png 480w, http://localhost:1313/p/linux-driver-learn/4_hu_b2f1de1746b7ee0d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;整体流程&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;528&#34;
+		data-flex-basis=&#34;1269px&#34;
+	
+&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;1.uboot设备树描述文件和内核设备树文件&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/5.png&#34;
+	width=&#34;789&#34;
+	height=&#34;168&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/5_hu_834a84dcc066e5b7.png 480w, http://localhost:1313/p/linux-driver-learn/5_hu_57d83a367ba1a6a1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;两设备树区别&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;469&#34;
+		data-flex-basis=&#34;1127px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2.运行时有关设备树的加载流程：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/6.png&#34;
+	width=&#34;775&#34;
+	height=&#34;470&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/6_hu_6b50129704e57f8e.png 480w, http://localhost:1313/p/linux-driver-learn/6_hu_b6da80d2faeb9433.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;相关介绍&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;3.有关板级设备树dtb在系统启动中的配置寻找&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/7.png&#34;
+	width=&#34;778&#34;
+	height=&#34;608&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/7_hu_88ad1dfe83517337.png 480w, http://localhost:1313/p/linux-driver-learn/7_hu_488ed9e8932cf330.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;相关介绍&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;127&#34;
+		data-flex-basis=&#34;307px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;124-根文件系统&#34;&gt;1.2.4 根文件系统
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;介绍：：是Linux系统在初始化时加载的第一个文件系统，根文件系统包括根目录和正式文件系统，它包含系统引导和使其他文件系统得以挂载（mount）所必要的文件。下面是一些常见的根文件系统制作工具：&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/8.png&#34;
+	width=&#34;781&#34;
+	height=&#34;328&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/8_hu_9a106e415945ef25.png 480w, http://localhost:1313/p/linux-driver-learn/8_hu_2eef045be2e0755b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;根文件系统制作工具&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;238&#34;
+		data-flex-basis=&#34;571px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;根目录框架：&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/9.png&#34;
+	width=&#34;753&#34;
+	height=&#34;648&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/9_hu_738838c10ddde9a9.png 480w, http://localhost:1313/p/linux-driver-learn/9_hu_2011322397be1036.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;根目录框架&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;116&#34;
+		data-flex-basis=&#34;278px&#34;
+	
+&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/sys：是虚拟文件系统，以文件形式提供内核对象（设备、驱动、总线、电源管理等）的运行时信息和配置接口。核心价值在于：它让你在系统运行时，无需重启，就能查看或修改内核和设备的状态。&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/sys/firmware/devicetree/base/：设备树文件在虚拟文件系统上的展开&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/10.png&#34;
+	width=&#34;760&#34;
+	height=&#34;359&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/10_hu_892a5dbfcc919cb.png 480w, http://localhost:1313/p/linux-driver-learn/10_hu_e424caf84b7b95a1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;相关介绍&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;211&#34;
+		data-flex-basis=&#34;508px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;125-系统的启动&#34;&gt;1.2.5 系统的启动
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;下载、启动引导&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;注意maskrom的模式&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;(1)初始化内存和存储接口&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;(2)通过USB把完整的固件（如U-Boot、内核、根文件系统）写入到外部的eMMC或NAND Flash中&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/11.png&#34;
+	width=&#34;753&#34;
+	height=&#34;208&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/11_hu_e5fbe6804dca3443.png 480w, http://localhost:1313/p/linux-driver-learn/11_hu_2badd5fa6a0f8e64.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;各模式介绍&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;362&#34;
+		data-flex-basis=&#34;868px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;镜像存储的介质和启动&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;eMMC和SD/TF卡&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/12.png&#34;
+	width=&#34;747&#34;
+	height=&#34;529&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/12_hu_3785516590529b62.png 480w, http://localhost:1313/p/linux-driver-learn/12_hu_1cc71098f738c4ac.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;emmc和sd卡启动对比&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;141&#34;
+		data-flex-basis=&#34;338px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;系统启动的maskrom基本阶段 &amp;ndash;&amp;gt; 一级引导SPL &amp;ndash;&amp;gt; 二级引导U-boot &amp;ndash;&amp;gt; Linux内核与系统文件&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/13.png&#34;
+	width=&#34;691&#34;
+	height=&#34;644&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/13_hu_17a2a99cc1a3f61d.png 480w, http://localhost:1313/p/linux-driver-learn/13_hu_41ef27cb31c9d7c8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;各阶段详细介绍&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;107&#34;
+		data-flex-basis=&#34;257px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;镜像包内容组成：&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;（1）uboot.img：引导加载器，专门负责初始化加载内核和基本的串口、时钟等设备树&lt;/li&gt;
+&lt;li&gt;（2）extboot.img：内核分区镜像，是内核加设备树的整体，将内核分区的内核和完整设备树加载到内存中运行。&lt;/li&gt;
+&lt;li&gt;（3）rootfs.img：文件系统镜像，整个根目录下的文件系统框架主体&lt;/li&gt;
+&lt;li&gt;SDK编译配置文件位置：device/rockchip/rk3588/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;关键词汇理解&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;UEFI （引导加载内核）&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;某些场景需要UEFI启动方式（比如安装标准Linux发行版），而不是传统的U-Boot启动&lt;/li&gt;
+&lt;li&gt;本质上这是一种代替U-Boot的启动方案，更接近PC的启动方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SPL （二级程序加载器）&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;RK3588的启动流程是：MaskROM -&amp;gt; SPL -&amp;gt; U-Boot -&amp;gt; kernel。SPL是U-Boot的精简版，负责初始化DDR内存，因为U-Boot本身太大，无法在SRAM中运行。&lt;/li&gt;
+&lt;li&gt;这是U-Boot的“迷你前身”，负责把U-Boot从存储介质加载到DDR内存中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PCBA （印刷电路板组装测试镜像）&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;在工厂生产阶段，需要测试电路板上的各个硬件接口是否正常，生成的一个专门用于硬件测试的镜像，包含各种硬件诊断工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Recovery镜像&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;编译恢复模式镜像&lt;/li&gt;
+&lt;li&gt;当系统无法正常启动时，可以通过Recovery模式进行系统修复、备份、恢复或刷机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SRAM和DDR&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;SRAM（静态随机存取存储器）：极速、容量小、掉电数据消失。CPU内部高速缓存或SoC内部小容量Buffer。不需要刷新，靠晶体管稳态存储。&lt;/li&gt;
+&lt;li&gt;DDR（双倍数据率同步动态随机存取存储器）：速度很快、容量大、掉电数据消失。运行操作系统、应用程序、存放临时数据的内存。需要刷新，靠电容电荷存储。&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/14.png&#34;
+	width=&#34;633&#34;
+	height=&#34;216&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/14_hu_472e122afa0705e1.png 480w, http://localhost:1313/p/linux-driver-learn/14_hu_6876d0658fdcfb58.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;区分理解&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;293&#34;
+		data-flex-basis=&#34;703px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MaskROM&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;MaskROM是RK3588芯片的“开机自检＋启动管理器”，它是一个固化在芯片内部、永远无法修改的小程序负责初始化最基础的硬件，然后从外部存储介质加载下一级引导程序，最终让Linux系统启动起来。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;13-有关知识&#34;&gt;1.3 有关知识
+&lt;/h2&gt;&lt;h3 id=&#34;131-网络tcpudpsocket&#34;&gt;1.3.1 网络(TCP\UDP)、Socket
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;TCP、UDP传输层协议学习：&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/15.png&#34;
+	width=&#34;909&#34;
+	height=&#34;297&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/15_hu_da4e37e9f35079d2.png 480w, http://localhost:1313/p/linux-driver-learn/15_hu_62f4a0c0c244527f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;初步理解&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;306&#34;
+		data-flex-basis=&#34;734px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TCP和UPD协议都是在传输层使用的协议类型，为上层应用层提供通讯&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;协议通讲&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/16.png&#34;
+	width=&#34;844&#34;
+	height=&#34;706&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/16_hu_5a722fd0cba25c2c.png 480w, http://localhost:1313/p/linux-driver-learn/16_hu_7d71366860bba2a6.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;知识1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;119&#34;
+		data-flex-basis=&#34;286px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/17.png&#34;
+	width=&#34;861&#34;
+	height=&#34;714&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/17_hu_55e9e1aae58cc19a.png 480w, http://localhost:1313/p/linux-driver-learn/17_hu_7115f96a3bc0caaf.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;知识2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;120&#34;
+		data-flex-basis=&#34;289px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/18.png&#34;
+	width=&#34;847&#34;
+	height=&#34;518&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/18_hu_88336583e17d9217.png 480w, http://localhost:1313/p/linux-driver-learn/18_hu_9a21eac561dfccb0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;知识3&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;163&#34;
+		data-flex-basis=&#34;392px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;socket（套接字）&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;概念：socket 其实是“程序和通信系统之间的编程接口”这个概念，不只限于网络。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/19.png&#34;
+	width=&#34;302&#34;
+	height=&#34;294&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/19_hu_29ff4125fa8a6988.png 480w, http://localhost:1313/p/linux-driver-learn/19_hu_fa2c93ebbbd9d0f2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;理解&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;102&#34;
+		data-flex-basis=&#34;246px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初步概念理解&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;(1). &lt;strong&gt;Unix 域套接字与网络套接字类似，但地址是文件系统中的路径（例如 /tmp/manual_control.sock）。通信的双方（服务端和客户端）需要运行在同一台机器的不同进程&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/20.png&#34;
+	width=&#34;741&#34;
+	height=&#34;270&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/20_hu_7330681131f7f315.png 480w, http://localhost:1313/p/linux-driver-learn/20_hu_975c7f1ff49a7d10.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;概念1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;274&#34;
+		data-flex-basis=&#34;658px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;(2). &lt;strong&gt;网络套接字的工作流程：（服务端）创建套接字-&amp;gt;绑定IP地址和端口号-&amp;gt;开始监听-&amp;gt;接受连接-&amp;gt;收发数据&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;(3). &lt;strong&gt;服务端创建udp通讯socket需要知道本地自己的ip和绑定一个端口用来告知客户端发送信号内容的目标ip和端口&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/21.png&#34;
+	width=&#34;696&#34;
+	height=&#34;166&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/21_hu_9e42abf9b3810527.png 480w, http://localhost:1313/p/linux-driver-learn/21_hu_354e48aebd9d775b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;概念2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;419&#34;
+		data-flex-basis=&#34;1006px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方式1：网络传输的socket&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;UDP、TCP网络通讯&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/22.png&#34;
+	width=&#34;695&#34;
+	height=&#34;290&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/22_hu_d7a26725d05cdfd2.png 480w, http://localhost:1313/p/linux-driver-learn/22_hu_b684537ccb5d7375.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;概念3&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;239&#34;
+		data-flex-basis=&#34;575px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方式2：本机内部进程之间通讯的socket：类似Unix Domain Socket&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;理解：&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/23.png&#34;
+	width=&#34;618&#34;
+	height=&#34;615&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/23_hu_adf2277a8d25096c.png 480w, http://localhost:1313/p/linux-driver-learn/23_hu_b4fa57c4421c5db4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;概念4&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;241px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可以查看哪个进程占用（创建）了某个套接字文件：lsof /tmp/manual_control.sock&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;14-常用指令&#34;&gt;1.4 常用指令
+&lt;/h2&gt;&lt;h3 id=&#34;141-网络相关&#34;&gt;1.4.1 网络相关
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nmcli device status
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ifconfig -a
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ip a show
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看ap热点名称：iw dev
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看路由：ip route show
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看状态：ip link show
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看NetworkManager配置：sudo NetworkManager --print-config
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看路由表：route -n
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;142-服务系统相关&#34;&gt;1.4.2 服务\系统相关
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查询热点网络服务：systemctl status hostapd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;关停服务：sudo systemctl stop track_beats.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看当前正在运行的服务：systemctl list-units --type=service --state=running
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看已启用开机自启的服务：systemctl list-unit-files --type=service --state=enabled
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看当前所有线程：top
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;监听端口：netstat -tuln | grep :9877
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;143-查找当前的vedio设备&#34;&gt;1.4.3 查找当前的vedio设备
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls /dev/video*
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;144-文件文件夹操作&#34;&gt;1.4.4 文件/文件夹操作
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查找某个文件：find / -name &amp;#34;test.py&amp;#34; 2&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查找某个文件夹：find . -type d -name &amp;#34;文件名&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;删除文件夹：rm -rf 文件夹
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看文件详细信息：ls -l 文件名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查询文件性质：File 文件名称
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;传输文件：scp -P 60000 -r .\* root&lt;span class=&#34;ni&#34;&gt;@192&lt;/span&gt;.168.1.96:/root/a733_stability/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;145-主机关机重启&#34;&gt;1.4.5 主机关机、重启
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/23.png&#34;
+	width=&#34;618&#34;
+	height=&#34;615&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/23_hu_adf2277a8d25096c.png 480w, http://localhost:1313/p/linux-driver-learn/23_hu_b4fa57c4421c5db4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;主机关机重启指令&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;241px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;146-操作-块设备u盘emmc硬盘ssd等&#34;&gt;1.4.6 操作-块设备（U盘、emmc、硬盘、ssd等）
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;挂载设备到目录下：mount 设备/分区 /根目录目标/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看块设备文件系统类型：blkid /dev/块设备名称
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;列出所有块设备：lsblk -f
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看设备文件类型：ls -l /dev/块设备名称
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;卸载挂载（*表示）：umount /dev/sdb* 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;格式化u盘：mkfs.ext4 /dev/sdb1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;147-用户权限&#34;&gt;1.4.7 用户权限
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;给文件增加可执行权限：chmod +x 文件名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看当前用户：whoami
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;设置初始化超级用户密码：sudo passwd root
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;切换为root权限用户：su root
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;修改超级用户密码：sudo passwd root
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;应用netplan配置：sudo netplan apply
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;148-安装压缩包&#34;&gt;1.4.8 安装压缩包
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;解压安装.deb文件：sudo apt install ./xxxxx.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;解压deb包：dpkg -x myapp_1.0.0_arm64.deb ./extracted/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;149-修改所有者所属组&#34;&gt;1.4.9 修改所有者/所属组
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/24.png&#34;
+	width=&#34;384&#34;
+	height=&#34;144&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/24_hu_1da013590e04c525.png 480w, http://localhost:1313/p/linux-driver-learn/24_hu_4ea426c5fdbd94d9.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;修改所属者&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;266&#34;
+		data-flex-basis=&#34;640px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;1410-系统内存相关&#34;&gt;1.4.10 系统、内存相关
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看当前文件内存：df -h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查询当前文件夹内的文件大小：sudo du -sh &lt;span class=&#34;ge&#34;&gt;* .[!.]*&lt;/span&gt; 2&amp;gt;/dev/null | sort -rh | head -20
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看内核版本：uname -a
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;动态查看内核日志：dmesg -w
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;检查、修复文件系统：sudo e2fsck -fy rootfs.img
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;加载内核模块：modprobe vfat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;查看系统版本：cat /etc/os-release
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;2-起步基础&#34;&gt;2. 起步基础
+&lt;/h1&gt;&lt;h2 id=&#34;21-gcc编译&#34;&gt;2.1 GCC编译
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;编译过程：
+&lt;ul&gt;
+&lt;li&gt;预处理-&amp;gt;编译-&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;22-makefile编写&#34;&gt;2.2 Makefile编写
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;定义：主要用于编写程序项目的编译规则
+&lt;ul&gt;
+&lt;li&gt;Makefile核心&amp;mdash;规则：
+&lt;ul&gt;
+&lt;li&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;err&#34;&gt;目标&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;：依赖&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;依赖&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;、、、&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TAB&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;命令&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;err&#34;&gt;当“目标文件”不存在&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;或&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;某个依赖文件比目标文件时间“新”&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;则&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;执行“命令”&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;语法：&lt;img src=&#34;http://localhost:1313/p/linux-driver-learn/2.jpg&#34;
+	width=&#34;1474&#34;
+	height=&#34;505&#34;
+	srcset=&#34;http://localhost:1313/p/linux-driver-learn/2_hu_dfba783287d77367.jpg 480w, http://localhost:1313/p/linux-driver-learn/2_hu_a9f8472e5237ef3c.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Makefile语法&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;291&#34;
+		data-flex-basis=&#34;700px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
